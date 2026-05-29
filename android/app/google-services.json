@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "710775723077",
+    "project_id": "kisan-pro-c2c81",
+    "storage_bucket": "kisan-pro-c2c81.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:710775723077:android:95c342103be6971ad6bf2c",
+        "android_client_info": {
+          "package_name": "com.example.jrf"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkLZyJyDanW3z_IYmITXoNgaYmylW202E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:710775723077:android:e2f821ad12574b62d6bf2c",
+        "android_client_info": {
+          "package_name": "com.example.kisan_pro_jrf"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkLZyJyDanW3z_IYmITXoNgaYmylW202E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
