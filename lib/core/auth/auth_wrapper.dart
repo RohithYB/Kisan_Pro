@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
 import '../services/firestore_service.dart';
 
-// 🔁 Import your actual screens
+// 🔁 Role-based screen imports
 import '../../features/admin/presentation/screens/admin_shell_screen.dart';
 import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/fleet/presentation/screens/fleet_dashboard_screen.dart';
+import '../../features/farmer/presentation/screens/farms_list_screen.dart';
 
 class AuthWrapper extends StatelessWidget {
   const AuthWrapper({super.key});
@@ -29,10 +30,10 @@ class AuthWrapper extends StatelessWidget {
 
         // ❌ Not logged in
         if (!snapshot.hasData) {
-          return const LoginScreen(); // 👉 your common login screen
+          return const LoginScreen();
         }
 
-        // ✅ Logged in → check role
+        // ✅ Logged in → check role in Firestore
         final user = snapshot.data!;
 
         return FutureBuilder<DocumentSnapshot>(
@@ -48,15 +49,15 @@ class AuthWrapper extends StatelessWidget {
               );
             }
 
-            // ❌ No user document
+            // ❌ No user document found
             if (!roleSnapshot.hasData || !roleSnapshot.data!.exists) {
               return const LoginScreen();
             }
 
             final data = roleSnapshot.data!.data() as Map<String, dynamic>;
-            final role = data['role'];
+            final role = data['role'] as String?;
 
-            // 🎯 ROLE-BASED ROUTING
+            // 🎯 ROLE-BASED ROUTING — same email can have multiple roles
             switch (role) {
               case 'admin':
                 return const AdminShellScreen();
@@ -65,8 +66,12 @@ class AuthWrapper extends StatelessWidget {
                 return const FleetDashboardScreen();
 
               case 'farmer':
+                // Farmer entry point: select/create farm first
+                return const FarmsListScreen();
+
+              case 'customer':
                 return const Scaffold(
-                  body: Center(child: Text('Farmer Dashboard')),
+                  body: Center(child: Text('Customer Dashboard')),
                 );
 
               default:
